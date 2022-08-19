@@ -452,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf01bdf5cd267d440bbf5308b350b7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoreCountText: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +962,7 @@ GameObject:
   - component: {fileID: 931770277}
   - component: {fileID: 931770276}
   m_Layer: 5
-  m_Name: StoreNumberLabel
+  m_Name: StoreCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
