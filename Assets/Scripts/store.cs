@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //import TextMeshPro
 using TMPro;
+using UnityEngine.UI;
 
 public class store : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class store : MonoBehaviour
     int storeCount;
     public GameObject StoreCountText;
     public GameObject CurrentBalanceText;
+    public Slider StoreProgressSlider;
     bool StartTimer;
     public float incomePerStore;
 
@@ -35,7 +37,7 @@ public class store : MonoBehaviour
         // set the text of StoreCountText to storeCount
         StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
         CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
-
+        StoreProgressSlider.GetComponent<Slider>().value = -1;
     }
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class store : MonoBehaviour
                 
             }
         }
+        StoreProgressSlider.GetComponent<Slider>().value = CurrentTimer / Timer;
+
     }
     
     public void BuyStoreOnClick () {
