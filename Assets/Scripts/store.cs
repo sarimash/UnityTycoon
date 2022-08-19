@@ -13,6 +13,11 @@ public class store : MonoBehaviour
     int storeCount;
     public GameObject StoreCountText;
     public GameObject CurrentBalanceText;
+    bool StartTimer;
+    public float incomePerStore;
+
+    float Timer = 4f;
+    float CurrentTimer = 0f;
 
 
     // Start is called before the first frame update
@@ -24,7 +29,9 @@ public class store : MonoBehaviour
         CurrentBalance = 2.00f;
         // set BaseStoreCost to $1.00
         BaseStoreCost = 1.00f;
-
+        // set incomePerStore to $0.50
+        incomePerStore = 0.50f;
+        
         // set the text of StoreCountText to storeCount
         StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
         CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
@@ -34,7 +41,25 @@ public class store : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // if StartTimer is true
+        if (StartTimer)
+        {
+            // set CurrentTimer to CurrentTimer + Time.deltaTime
+            CurrentTimer += Time.deltaTime;
+            // if CurrentTimer is greater than Timer
+            if (CurrentTimer > Timer)
+            {
+                // Turn off StartTimer
+                StartTimer = false;
+                // set CurrentTimer to 0
+                CurrentTimer = 0;
+                // gain incomePerStore times storeCount
+                CurrentBalance += incomePerStore * storeCount;
+                // update the text of CurrentBalanceText to CurrentBalance
+                CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
+                
+            }
+        }
     }
     
     public void BuyStoreOnClick () {
@@ -49,6 +74,16 @@ public class store : MonoBehaviour
             StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
             // update CurrentBalanceText to CurrentBalance
             CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
+        }
+    }
+
+    public void StoreOnClick() {
+        // if !StartTimer
+        if (!StartTimer) {
+            // set StartTimer to true
+            StartTimer = true;
+            // set CurrentTimer to 0
+            CurrentTimer = 0f;
         }
     }
 
