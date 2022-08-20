@@ -17,7 +17,7 @@ jobs:
         
         # Build WebGL
         - name: Build WebGL
-          run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath . -buildTarget WebGL ./build/
+          run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath . -buildTarget WebGL ./build
 
         - name: Archive WebGL Build
           uses: actions/upload-artifact@v1
