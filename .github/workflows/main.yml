@@ -1,0 +1,25 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: unityci/editor:2021.3.4f1-webgl-1
+    steps:
+        - name: Checkout Project
+          uses: actions/checkout@v1
+
+        - name: Decrypt the license file
+          run: openssl aes-256-cbc -d -in .github/Unity_v2021.x.ulf.enc -k ${{ secrets.UNITY_LICENSE_DECRYPT_KEY }} >> .github/Unity_v2018.x.ulf
+        
+        # Activate unity
+        - name: Activate Unity
+          run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .github/Unity_v2018.x.ulf || exit 0
+        
+        # Build WebGL
+          run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath . -buildTarget WebGL ./build/
+
+        - name: Archive WebGL Build
+          uses: actions/upload-artifact@v1
+          with:
+            name: WebGL Build
+            path: ./build
