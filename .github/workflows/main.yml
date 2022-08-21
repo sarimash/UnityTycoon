@@ -45,7 +45,7 @@ jobs:
           name: Build
           path: build
 
-deployPages:
+  deployPages:
     needs: Build project
     name: Deploy to Github Pages 🚀
     runs-on: ubuntu-latest
