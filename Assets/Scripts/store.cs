@@ -7,13 +7,11 @@ using UnityEngine.UI;
 
 public class store : MonoBehaviour
 {
-
-    float CurrentBalance;
+    public GameManager gameManager;
     float BaseStoreCost;
 
     int storeCount;
     public GameObject StoreCountText;
-    public GameObject CurrentBalanceText;
     public Slider StoreProgressSlider;
     bool StartTimer;
     public float incomePerStore;
@@ -25,10 +23,11 @@ public class store : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // get reference to game manager
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         // set storeCount to 1
         storeCount = 1;
-        // set current balance to $2.00
-        CurrentBalance = 2.00f;
         // set BaseStoreCost to $1.00
         BaseStoreCost = 1.00f;
         // set incomePerStore to $0.50
@@ -36,7 +35,6 @@ public class store : MonoBehaviour
         
         // set the text of StoreCountText to storeCount
         StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
-        CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
         StoreProgressSlider.GetComponent<Slider>().value = -1;
     }
 
@@ -56,10 +54,7 @@ public class store : MonoBehaviour
                 // set CurrentTimer to 0
                 CurrentTimer = 0;
                 // gain incomePerStore times storeCount
-                CurrentBalance += incomePerStore * storeCount;
-                // update the text of CurrentBalanceText to CurrentBalance
-                CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
-                
+                gameManager.AddBalance( incomePerStore * storeCount );                
             }
         }
         StoreProgressSlider.GetComponent<Slider>().value = CurrentTimer / Timer;
@@ -67,17 +62,14 @@ public class store : MonoBehaviour
     }
     
     public void BuyStoreOnClick () {
-        if (BaseStoreCost > CurrentBalance) {
+        if (BaseStoreCost > gameManager.GetCurrentBalance()) {
             // do nothing
         } else {
             // add 1 to storeCount
             storeCount++;
-            // add BaseStoreCost to CurrentBalance
-            CurrentBalance -= BaseStoreCost;
+            gameManager.AddBalance(-BaseStoreCost);
             // set the text of StoreCountText to storeCount
             StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
-            // update CurrentBalanceText to CurrentBalance
-            CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
         }
     }
 
