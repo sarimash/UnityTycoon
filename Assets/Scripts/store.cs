@@ -9,6 +9,8 @@ public class store : MonoBehaviour
 {
     public GameManager gameManager;
     float BaseStoreCost;
+    [SerializeField]
+    bool ManagerUnlocked;
 
     int storeCount;
     public GameObject StoreCountText;
@@ -49,8 +51,9 @@ public class store : MonoBehaviour
             // if CurrentTimer is greater than Timer
             if (CurrentTimer > Timer)
             {
-                // Turn off StartTimer
-                StartTimer = false;
+                if(!ManagerUnlocked)
+                    // Turn off StartTimer
+                    StartTimer = false;
                 // set CurrentTimer to 0
                 CurrentTimer = 0;
                 // gain incomePerStore times storeCount
