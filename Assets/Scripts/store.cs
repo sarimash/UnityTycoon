@@ -11,6 +11,11 @@ public class store : MonoBehaviour
     float BaseStoreCost;
     [SerializeField]
     bool ManagerUnlocked;
+    [SerializeField]
+    float StoreCostMultiplier;
+
+    public float NextStoreCost => BaseStoreCost * Mathf.Pow(StoreCostMultiplier, storeCount);
+
 
     int storeCount;
     public GameObject StoreCountText;
@@ -34,6 +39,8 @@ public class store : MonoBehaviour
         BaseStoreCost = 1.00f;
         // set incomePerStore to $0.50
         incomePerStore = 0.50f;
+        // set StoreCostMultiplier to 1.1
+        StoreCostMultiplier = 1.1f;
         
         // set the text of StoreCountText to storeCount
         StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
@@ -65,12 +72,12 @@ public class store : MonoBehaviour
     }
     
     public void BuyStoreOnClick () {
-        if (BaseStoreCost > gameManager.GetCurrentBalance()) {
+        if (NextStoreCost > gameManager.GetCurrentBalance()) {
             // do nothing
         } else {
             // add 1 to storeCount
             storeCount++;
-            gameManager.AddBalance(-BaseStoreCost);
+            gameManager.AddBalance(-NextStoreCost);
             // set the text of StoreCountText to storeCount
             StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
         }

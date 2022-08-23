@@ -545,6 +545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  ManagerUnlocked: 0
+  StoreCostMultiplier: 0
   StoreCountText: {fileID: 931770274}
   StoreProgressSlider: {fileID: 131650018}
   incomePerStore: 0
