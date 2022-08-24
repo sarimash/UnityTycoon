@@ -64,7 +64,20 @@ public class store : MonoBehaviour
             }
         }
         StoreProgressSlider.GetComponent<Slider>().value = CurrentTimer / Timer;
+        CheckBuyStore();
+    }
 
+    public void CheckBuyStore() {
+        if (gameManager.GetCurrentBalance() >= NextStoreCost)
+        {
+            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy Store";
+            BuyButtonText.transform.parent.gameObject.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Not Enough Money";
+            BuyButtonText.transform.parent.gameObject.GetComponent<Button>().interactable = false;
+        }
     }
 
     void UpdateBuyButtonText()
