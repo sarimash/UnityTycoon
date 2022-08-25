@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public void AddBalance(float amount)
     {
         CurrentBalance += amount;
+        CurrentBalance = Mathf.Floor(CurrentBalance * 100) / 100;
         UpdateBalanceText();
     }
 

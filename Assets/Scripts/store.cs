@@ -16,6 +16,10 @@ public class store : MonoBehaviour
     float StoreCostMultiplier;
     [SerializeField]
     int storeCount;
+    [SerializeField]
+    bool StoreUnlocked;
+    [SerializeField]
+    GameObject StorePanel;
 
     public float NextStoreCost => Mathf.Round(BaseStoreCost * Mathf.Pow(StoreCostMultiplier, storeCount) * 100)/100;
 
@@ -31,6 +35,9 @@ public class store : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!StoreUnlocked) {
+            StorePanel.GetComponent<CanvasGroup>().alpha = 0f;
+        }
         // get reference to game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -68,6 +75,14 @@ public class store : MonoBehaviour
     }
 
     public void CheckBuyStore() {
+        if (!StoreUnlocked && (gameManager.GetCurrentBalance() >= NextStoreCost*0.8f))
+        {
+            StoreUnlocked = true;
+            // make panel visible
+            StorePanel.GetComponent<CanvasGroup>().alpha = 1f;
+            UpdateBuyButtonText();
+        }
+
         if (gameManager.GetCurrentBalance() >= NextStoreCost)
         {
             //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy Store";
@@ -101,7 +116,7 @@ public class store : MonoBehaviour
 
     public void StoreOnClick() {
         // if !StartTimer
-        if (!StartTimer) {
+        if (!StartTimer && StoreUnlocked && storeCount > 0) {
             // set StartTimer to true
             StartTimer = true;
             // set CurrentTimer to 0

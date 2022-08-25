@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 382109936023145278}
   - component: {fileID: 382109936023145276}
   - component: {fileID: 382109936023145277}
+  - component: {fileID: 7162333881134750713}
   m_Layer: 5
   m_Name: StorePanel
   m_TagString: Untagged
@@ -535,6 +536,8 @@ MonoBehaviour:
   ManagerUnlocked: 1
   StoreCostMultiplier: 1.1
   storeCount: 1
+  StoreUnlocked: 0
+  StorePanel: {fileID: 0}
   StoreCountText: {fileID: 382109936432722644}
   StoreProgressSlider: {fileID: 382109935630634132}
   incomePerStore: 0.6
@@ -594,6 +597,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &7162333881134750713
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382109936023145264}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &382109936164313326
 GameObject:
   m_ObjectHideFlags: 0
