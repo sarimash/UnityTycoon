@@ -965,6 +965,10 @@ PrefabInstance:
       propertyPath: StorePanel
       value: 
       objectReference: {fileID: 478090822}
+    - target: {fileID: 382109936023145276, guid: 0fd6acde1599c9847b382f6c6f2996c6, type: 3}
+      propertyPath: StoreTimerDivideNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 382109936023145277, guid: 0fd6acde1599c9847b382f6c6f2996c6, type: 3}
       propertyPath: m_Interactable
       value: 1

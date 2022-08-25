@@ -20,6 +20,8 @@ public class store : MonoBehaviour
     bool StoreUnlocked;
     [SerializeField]
     GameObject StorePanel;
+    [SerializeField]
+    int StoreTimerUpgrade = 5;
 
     public float NextStoreCost => Mathf.Round(BaseStoreCost * Mathf.Pow(StoreCostMultiplier, storeCount) * 100)/100;
 
@@ -110,6 +112,9 @@ public class store : MonoBehaviour
             storeCount++;
             // set the text of StoreCountText to storeCount
             StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
+            if (storeCount % StoreTimerUpgrade == 0) {
+                Timer *= 0.9f;
+            }
         }
         UpdateBuyButtonText();
     }
