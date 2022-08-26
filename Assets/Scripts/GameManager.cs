@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     float CurrentBalance;
-    public GameObject CurrentBalanceText;
+    UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        // set current balance to $2.00
-        CurrentBalance = 2.00f;
-        UpdateBalanceText();
+        // get reference to UI manager
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        // set current balance to $6.00
+        CurrentBalance = 6.00f;
+        uiManager.UpdateBalanceText(CurrentBalance);
     }
 
     // Update is called once per frame
@@ -27,13 +28,9 @@ public class GameManager : MonoBehaviour
     {
         CurrentBalance += amount;
         CurrentBalance = Mathf.Floor(CurrentBalance * 100) / 100;
-        UpdateBalanceText();
+        uiManager.UpdateBalanceText(CurrentBalance);
     }
 
-    public void UpdateBalanceText()
-    {
-        CurrentBalanceText.GetComponent<TextMeshProUGUI>().text = "$" + CurrentBalance.ToString("0.00");
-    }
 
     public float GetCurrentBalance()
     {
