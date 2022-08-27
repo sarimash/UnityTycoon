@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void UpdateBalance(float balance);
+    public static event UpdateBalance OnUpdateBalance;
+
+
     float CurrentBalance;
     UIManager uiManager;
 
@@ -15,7 +19,10 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         // set current balance to $6.00
         CurrentBalance = 6.00f;
-        uiManager.UpdateBalanceText(CurrentBalance);
+        if (OnUpdateBalance != null)
+        {
+            OnUpdateBalance(CurrentBalance);
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +35,12 @@ public class GameManager : MonoBehaviour
     {
         CurrentBalance += amount;
         CurrentBalance = Mathf.Floor(CurrentBalance * 100) / 100;
-        uiManager.UpdateBalanceText(CurrentBalance);
+        if (OnUpdateBalance != null)
+        {
+            OnUpdateBalance(CurrentBalance);
+        }
+        
+        //uiManager.UpdateBalanceText(CurrentBalance);
     }
 
 

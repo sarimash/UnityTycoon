@@ -18,6 +18,16 @@ public class UIManager : MonoBehaviour
 
     }
 
+    void OnEnable() {
+        //subscribe to the event
+        GameManager.OnUpdateBalance += UpdateBalanceText;
+    }
+
+    void OnDisable() {
+        //unsubscribe from the event
+        GameManager.OnUpdateBalance -= UpdateBalanceText;
+    }
+
     // Update is called once per frame
     void Update()
     {
