@@ -15,41 +15,39 @@ public class store : MonoBehaviour
     [SerializeField]
     float StoreCostMultiplier;
     [SerializeField]
-    int storeCount;
-    [SerializeField]
     bool StoreUnlocked;
     [SerializeField]
-    GameObject StorePanel;
-    [SerializeField]
     int StoreTimerUpgrade = 5;
-
-    public float NextStoreCost => Mathf.Round(BaseStoreCost * Mathf.Pow(StoreCostMultiplier, storeCount) * 100)/100;
-
-    public GameObject StoreCountText;
-    public Slider StoreProgressSlider;
-    bool StartTimer;
     public float incomePerStore;
-
+    bool StartTimer;
     float Timer = 4f;
     float CurrentTimer = 0f;
-    GameObject BuyButtonText;
+    
+    [SerializeField]
+    public int StoreCount { get; private set; }
+
+    public float NextStoreCost => Mathf.Round(BaseStoreCost * Mathf.Pow(StoreCostMultiplier, StoreCount) * 100)/100;
+    UIStore uiStore;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!StoreUnlocked) {
-            StorePanel.GetComponent<CanvasGroup>().alpha = 0f;
-        }
         // get reference to game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // get reference to ui store
+        uiStore = transform.GetComponent<UIStore>();
 
-        // get the BuyButton that is a child of this panel
-        BuyButtonText = transform.Find("BuyButton").gameObject.transform.Find("StoreButtonBuyText").gameObject;
+        uiStore.UpdateBuyButtonText();
 
-        // set the text of StoreCountText to storeCount
-        StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
-        StoreProgressSlider.GetComponent<Slider>().value = -1;
-        UpdateBuyButtonText();
+        if (!StoreUnlocked)
+        {
+            uiStore.HidePanel();
+        }
+        else
+        {
+            uiStore.ShowPanel();
+        }
     }
 
     // Update is called once per frame
@@ -68,11 +66,11 @@ public class store : MonoBehaviour
                     StartTimer = false;
                 // set CurrentTimer to 0
                 CurrentTimer = 0;
-                // gain incomePerStore times storeCount
-                gameManager.AddBalance( incomePerStore * storeCount );                
+                // gain incomePerStore times StoreCount
+                gameManager.AddBalance( incomePerStore * StoreCount );                
             }
         }
-        StoreProgressSlider.GetComponent<Slider>().value = CurrentTimer / Timer;
+        uiStore.UpdateProgressBar(CurrentTimer / Timer);
         CheckBuyStore();
     }
 
@@ -81,47 +79,43 @@ public class store : MonoBehaviour
         {
             StoreUnlocked = true;
             // make panel visible
-            StorePanel.GetComponent<CanvasGroup>().alpha = 1f;
-            UpdateBuyButtonText();
+            uiStore.ShowPanel();
+            uiStore.UpdateBuyButtonText();
         }
 
         if (gameManager.GetCurrentBalance() >= NextStoreCost)
         {
             //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy Store";
-            BuyButtonText.transform.parent.gameObject.GetComponent<Button>().interactable = true;
+            uiStore.UnlockBuyButtonText();
+            
         }
         else
         {
             //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Not Enough Money";
-            BuyButtonText.transform.parent.gameObject.GetComponent<Button>().interactable = false;
+            uiStore.LockBuyButtonText();
         }
-    }
-
-    void UpdateBuyButtonText()
-    {
-        // set the text of BuyButtonText to "Buy for $" + NextStoreCost
-        BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy for $" + NextStoreCost;
     }
     
     public void BuyStoreOnClick () {
         if (NextStoreCost > gameManager.GetCurrentBalance()) {
             // do nothing
         } else {
-            // add 1 to storeCount
+            // add 1 to StoreCount
             gameManager.AddBalance(-NextStoreCost);
-            storeCount++;
+            StoreCount++;
             // set the text of StoreCountText to storeCount
-            StoreCountText.GetComponent<TextMeshProUGUI>().text = storeCount.ToString();
-            if (storeCount % StoreTimerUpgrade == 0) {
+            uiStore.UpdateStoreCountText();
+
+            if (StoreCount % StoreTimerUpgrade == 0) {
                 Timer *= 0.9f;
             }
         }
-        UpdateBuyButtonText();
+        uiStore.UpdateBuyButtonText();
     }
 
     public void StoreOnClick() {
         // if !StartTimer
-        if (!StartTimer && StoreUnlocked && storeCount > 0) {
+        if (!StartTimer && StoreUnlocked && StoreCount > 0) {
             // set StartTimer to true
             StartTimer = true;
             // set CurrentTimer to 0
