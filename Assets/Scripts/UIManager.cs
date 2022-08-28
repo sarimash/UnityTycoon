@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
         CurrentBalanceText = GameObject.Find("CurrentBalanceText").gameObject;
         //get reference to game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        UpdateBalanceText(gameManager.GetCurrentBalance());
     }
 
     void OnEnable() {

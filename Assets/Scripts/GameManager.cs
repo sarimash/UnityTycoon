@@ -19,10 +19,6 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         // set current balance to $6.00
         CurrentBalance = 6.00f;
-        if (OnUpdateBalance != null)
-        {
-            OnUpdateBalance(CurrentBalance);
-        }
     }
 
     // Update is called once per frame
