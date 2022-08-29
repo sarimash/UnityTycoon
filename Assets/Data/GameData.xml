@@ -1,0 +1,14 @@
+<GameData>
+    <Store>
+        <Name>Hotel</Name>
+        <BaseStoreCost>1</BaseStoreCost>
+        <BaseStoreProfit>0.6</BaseStoreProfit>
+        <StoreTimer>3</StoreTimer>
+    </Store>
+    <Store>
+        <Name>Restaurant</Name>
+        <BaseStoreCost>5</BaseStoreCost>
+        <BaseStoreProfit>1.5</BaseStoreProfit>
+        <StoreTimer>7</StoreTimer>
+    </Store>
+</GameData>
