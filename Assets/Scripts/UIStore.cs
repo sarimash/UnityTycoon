@@ -11,6 +11,8 @@ public class UIStore : MonoBehaviour
     public GameObject StoreCountText;
     public Slider StoreProgressSlider;
     GameObject BuyButtonText;
+    [SerializeField]
+    TextMeshProUGUI StoreNameText;
     // [SerializeField]
     // GameObject StorePanel;
 
@@ -30,7 +32,11 @@ public class UIStore : MonoBehaviour
         StoreCountText.GetComponent<TextMeshProUGUI>().text = Store.StoreCount.ToString();
         StoreProgressSlider.GetComponent<Slider>().value = -1;
         UpdateBuyButtonText();
+        UpdateStoreName();
+    }
 
+    void UpdateStoreName() {
+        StoreNameText.text = Store.StoreName;
     }
 
     // Update is called once per frame

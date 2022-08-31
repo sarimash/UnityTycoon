@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 7162333881134750713}
   - component: {fileID: 2704694677450789154}
   m_Layer: 5
-  m_Name: StorePanel
+  m_Name: StorePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,8 +537,10 @@ MonoBehaviour:
   ManagerUnlocked: 1
   StoreCostMultiplier: 1.1
   StoreUnlocked: 0
-  StoreTimerUpgrade: 5
+  StoreStoreTimerUpgrade: 5
   incomePerStore: 0.6
+  StoreTimer: 4
+  CurrentStoreTimer: 0
 --- !u!114 &382109936023145277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StoreCountText: {fileID: 382109936432722644}
   StoreProgressSlider: {fileID: 382109935630634132}
+  StoreNameText: {fileID: 382109935200989867}
 --- !u!1 &382109936164313326
 GameObject:
   m_ObjectHideFlags: 0

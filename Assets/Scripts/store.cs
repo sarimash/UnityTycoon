@@ -9,7 +9,7 @@ public class store : MonoBehaviour
 {
     public GameManager gameManager;
     [SerializeField]
-    float BaseStoreCost;
+    public float BaseStoreCost { get; set; }
     [SerializeField]
     bool ManagerUnlocked;
     [SerializeField]
@@ -17,12 +17,15 @@ public class store : MonoBehaviour
     [SerializeField]
     bool StoreUnlocked;
     [SerializeField]
-    int StoreTimerUpgrade = 5;
+    int StoreStoreTimerUpgrade = 5;
+    [SerializeField] 
     public float incomePerStore;
-    bool StartTimer;
-    float Timer = 4f;
-    float CurrentTimer = 0f;
-    
+    bool StartStoreTimer;
+    public float StoreTimer = 4f;
+    public float CurrentStoreTimer = 0f;
+    [SerializeField]
+    public string StoreName { get; set; }
+
     [SerializeField]
     public int StoreCount { get; private set; }
 
@@ -53,24 +56,24 @@ public class store : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if StartTimer is true
-        if (StartTimer)
+        // if StartStoreTimer is true
+        if (StartStoreTimer)
         {
-            // set CurrentTimer to CurrentTimer + Time.deltaTime
-            CurrentTimer += Time.deltaTime;
-            // if CurrentTimer is greater than Timer
-            if (CurrentTimer > Timer)
+            // set CurrentStoreTimer to CurrentStoreTimer + Time.deltaTime
+            CurrentStoreTimer += Time.deltaTime;
+            // if CurrentStoreTimer is greater than StoreTimer
+            if (CurrentStoreTimer > StoreTimer)
             {
                 if(!ManagerUnlocked)
-                    // Turn off StartTimer
-                    StartTimer = false;
-                // set CurrentTimer to 0
-                CurrentTimer = 0;
+                    // Turn off StartStoreTimer
+                    StartStoreTimer = false;
+                // set CurrentStoreTimer to 0
+                CurrentStoreTimer = 0;
                 // gain incomePerStore times StoreCount
                 gameManager.AddBalance( incomePerStore * StoreCount );                
             }
         }
-        uiStore.UpdateProgressBar(CurrentTimer / Timer);
+        uiStore.UpdateProgressBar(CurrentStoreTimer / StoreTimer);
         CheckBuyStore();
     }
 
@@ -106,20 +109,20 @@ public class store : MonoBehaviour
             // set the text of StoreCountText to storeCount
             uiStore.UpdateStoreCountText();
 
-            if (StoreCount % StoreTimerUpgrade == 0) {
-                Timer *= 0.9f;
+            if (StoreCount % StoreStoreTimerUpgrade == 0) {
+                StoreTimer *= 0.9f;
             }
         }
         uiStore.UpdateBuyButtonText();
     }
 
     public void StoreOnClick() {
-        // if !StartTimer
-        if (!StartTimer && StoreUnlocked && StoreCount > 0) {
-            // set StartTimer to true
-            StartTimer = true;
-            // set CurrentTimer to 0
-            CurrentTimer = 0f;
+        // if !StartStoreTimer
+        if (!StartStoreTimer && StoreUnlocked && StoreCount > 0) {
+            // set StartStoreTimer to true
+            StartStoreTimer = true;
+            // set CurrentStoreTimer to 0
+            CurrentStoreTimer = 0f;
         }
     }
 
