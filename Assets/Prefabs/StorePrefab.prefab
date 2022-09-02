@@ -5348,7 +5348,6 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   ManagerUnlocked: 1
   StoreCostMultiplier: 1.1
-  StoreUnlocked: 0
   StoreStoreTimerUpgrade: 5
   incomePerStore: 0.6
   StoreTimer: 4

@@ -13,7 +13,7 @@ public class store : MonoBehaviour
     [SerializeField]
     bool ManagerUnlocked;
     [SerializeField]
-    float StoreCostMultiplier;
+    public float StoreCostMultiplier;
     [SerializeField]
     public bool StoreUnlocked { get; set; }
     [SerializeField]

@@ -5,12 +5,22 @@
         <BaseStoreProfit>0.6</BaseStoreProfit>
         <StoreTimer>3</StoreTimer>
         <StoreUnlocked>True</StoreUnlocked>
+        <StoreCostMultiplier>1.1</StoreCostMultiplier>
     </Store>
     <Store>
         <Name>Restaurant</Name>
         <BaseStoreCost>10</BaseStoreCost>
         <BaseStoreProfit>1.5</BaseStoreProfit>
-        <StoreTimer>7</StoreTimer>
+        <StoreTimer>5</StoreTimer>
         <StoreUnlocked>False</StoreUnlocked>
+        <StoreCostMultiplier>1.08</StoreCostMultiplier>
+    </Store>
+    <Store>
+        <Name>Airport</Name>
+        <BaseStoreCost>50</BaseStoreCost>
+        <BaseStoreProfit>7</BaseStoreProfit>
+        <StoreTimer>10</StoreTimer>
+        <StoreUnlocked>False</StoreUnlocked>
+        <StoreCostMultiplier>1.06</StoreCostMultiplier>
     </Store>
 </GameData>

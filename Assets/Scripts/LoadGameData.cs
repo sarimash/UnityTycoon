@@ -47,6 +47,10 @@ public class LoadGameData : MonoBehaviour
                 {
                     storeObj.StoreUnlocked = bool.Parse(Detail.InnerText);
                 }        
+                else if (Detail.Name == "StoreCostMultiplier")
+                {
+                    storeObj.StoreCostMultiplier = float.Parse(Detail.InnerText);
+                }
             }
 
             storeObj.transform.SetParent(StorePanel.transform);

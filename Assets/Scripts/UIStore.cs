@@ -22,7 +22,6 @@ public class UIStore : MonoBehaviour
     void Start()
     {
         Store = transform.GetComponent<store>();
-        Debug.Log(Store.StoreName);
 
         // get the BuyButton that is a child of this panel
         BuyButtonText = transform.Find("BuyButton").gameObject.transform.Find("StoreButtonBuyText").gameObject;
