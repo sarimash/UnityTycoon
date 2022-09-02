@@ -2,7 +2,7 @@
     <Store>
         <Name>Hotel</Name>
         <BaseStoreCost>1</BaseStoreCost>
-        <BaseStoreProfit>6</BaseStoreProfit>
+        <BaseStoreProfit>0.6</BaseStoreProfit>
         <StoreTimer>3</StoreTimer>
         <StoreUnlocked>True</StoreUnlocked>
     </Store>
