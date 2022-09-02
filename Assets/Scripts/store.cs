@@ -15,7 +15,7 @@ public class store : MonoBehaviour
     [SerializeField]
     float StoreCostMultiplier;
     [SerializeField]
-    bool StoreUnlocked;
+    public bool StoreUnlocked { get; set; }
     [SerializeField]
     int StoreStoreTimerUpgrade = 5;
     [SerializeField] 
@@ -41,15 +41,9 @@ public class store : MonoBehaviour
         // get reference to ui store
         uiStore = transform.GetComponent<UIStore>();
 
-        uiStore.UpdateBuyButtonText();
-
         if (!StoreUnlocked)
         {
             uiStore.HidePanel();
-        }
-        else
-        {
-            uiStore.ShowPanel();
         }
     }
 
@@ -83,7 +77,6 @@ public class store : MonoBehaviour
             StoreUnlocked = true;
             // make panel visible
             uiStore.ShowPanel();
-            uiStore.UpdateBuyButtonText();
         }
 
         if (gameManager.GetCurrentBalance() >= NextStoreCost)
@@ -107,13 +100,12 @@ public class store : MonoBehaviour
             gameManager.AddBalance(-NextStoreCost);
             StoreCount++;
             // set the text of StoreCountText to storeCount
-            uiStore.UpdateStoreCountText();
+            //uiStore.UpdateStoreCountText();
 
             if (StoreCount % StoreStoreTimerUpgrade == 0) {
                 StoreTimer *= 0.9f;
             }
         }
-        uiStore.UpdateBuyButtonText();
     }
 
     public void StoreOnClick() {

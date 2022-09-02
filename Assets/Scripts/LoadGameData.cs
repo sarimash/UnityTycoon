@@ -10,7 +10,8 @@ public class LoadGameData : MonoBehaviour
     public GameObject StorePrefab;
 
     public void Start() {
-        Invoke("LoadData", 0.1f);
+        //Invoke("LoadData", 0.1f);
+        LoadData();
     }
 
     public void LoadData()
@@ -27,9 +28,6 @@ public class LoadGameData : MonoBehaviour
             XmlNodeList StoreDetail = Store.ChildNodes;
             foreach(XmlNode Detail in StoreDetail)
             {
-                Debug.Log(Detail.Name);
-                Debug.Log(Detail.InnerText);
-
                 if (Detail.Name == "Name")
                 {
                     storeObj.StoreName = Detail.InnerText;
@@ -44,6 +42,10 @@ public class LoadGameData : MonoBehaviour
                 else if (Detail.Name == "StoreTimer")
                 {
                     storeObj.StoreTimer = float.Parse(Detail.InnerText);
+                }
+                else if (Detail.Name == "StoreUnlocked")
+                {
+                    storeObj.StoreUnlocked = bool.Parse(Detail.InnerText);
                 }        
             }
 

@@ -15,11 +15,14 @@ public class UIStore : MonoBehaviour
     TextMeshProUGUI StoreNameText;
     // [SerializeField]
     // GameObject StorePanel;
+    [SerializeField]
+    ParticleSystem StoreParticle;
 
     // Start is called before the first frame update
     void Start()
     {
         Store = transform.GetComponent<store>();
+        Debug.Log(Store.StoreName);
 
         // get the BuyButton that is a child of this panel
         BuyButtonText = transform.Find("BuyButton").gameObject.transform.Find("StoreButtonBuyText").gameObject;
@@ -42,7 +45,8 @@ public class UIStore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateBuyButtonText();
+        UpdateStoreCountText();
     }
 
     public void UpdateBuyButtonText()
@@ -57,6 +61,7 @@ public class UIStore : MonoBehaviour
 
     public void ShowPanel() {
         transform.GetComponent<CanvasGroup>().alpha = 1f;
+        StoreParticle.Play();
     }
 
     public void HidePanel() {

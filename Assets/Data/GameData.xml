@@ -2,13 +2,15 @@
     <Store>
         <Name>Hotel</Name>
         <BaseStoreCost>1</BaseStoreCost>
-        <BaseStoreProfit>0.6</BaseStoreProfit>
+        <BaseStoreProfit>6</BaseStoreProfit>
         <StoreTimer>3</StoreTimer>
+        <StoreUnlocked>True</StoreUnlocked>
     </Store>
     <Store>
         <Name>Restaurant</Name>
-        <BaseStoreCost>5</BaseStoreCost>
+        <BaseStoreCost>10</BaseStoreCost>
         <BaseStoreProfit>1.5</BaseStoreProfit>
         <StoreTimer>7</StoreTimer>
+        <StoreUnlocked>False</StoreUnlocked>
     </Store>
 </GameData>
