@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //import TextMeshPro
 using TMPro;
+//import UnityEngine.UI
 using UnityEngine.UI;
 
 public class store : MonoBehaviour

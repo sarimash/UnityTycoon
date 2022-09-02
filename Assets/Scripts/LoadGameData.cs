@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
+//import sprite
+using UnityEngine.UI;
 
 public class LoadGameData : MonoBehaviour
 {
@@ -50,6 +52,10 @@ public class LoadGameData : MonoBehaviour
                 else if (Detail.Name == "StoreCostMultiplier")
                 {
                     storeObj.StoreCostMultiplier = float.Parse(Detail.InnerText);
+                }
+                else if (Detail.Name == "Image")
+                {
+                    storeObj.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>(Detail.InnerText);
                 }
             }
 

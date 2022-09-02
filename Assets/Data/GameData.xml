@@ -1,26 +1,29 @@
 <GameData>
     <Store>
-        <Name>Hotel</Name>
+        <Name>Lemonade Stand</Name>
         <BaseStoreCost>1</BaseStoreCost>
         <BaseStoreProfit>0.6</BaseStoreProfit>
         <StoreTimer>3</StoreTimer>
         <StoreUnlocked>True</StoreUnlocked>
         <StoreCostMultiplier>1.1</StoreCostMultiplier>
+        <Image>lemonade</Image>
     </Store>
     <Store>
-        <Name>Restaurant</Name>
+        <Name>Cafe</Name>
         <BaseStoreCost>10</BaseStoreCost>
         <BaseStoreProfit>1.5</BaseStoreProfit>
         <StoreTimer>5</StoreTimer>
         <StoreUnlocked>False</StoreUnlocked>
         <StoreCostMultiplier>1.08</StoreCostMultiplier>
+        <Image>coffee</Image>
     </Store>
     <Store>
-        <Name>Airport</Name>
+        <Name>Pet Shop</Name>
         <BaseStoreCost>50</BaseStoreCost>
         <BaseStoreProfit>7</BaseStoreProfit>
         <StoreTimer>10</StoreTimer>
         <StoreUnlocked>False</StoreUnlocked>
         <StoreCostMultiplier>1.06</StoreCostMultiplier>
+        <Image>dogcat</Image>
     </Store>
 </GameData>
