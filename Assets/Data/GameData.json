@@ -1,0 +1,29 @@
+[
+       {
+          "Name":"Lemonade Stand",
+          "BaseStoreCost":"1",
+          "BaseStoreProfit":"0.6",
+          "StoreTimer":"3",
+          "StoreUnlocked":"True",
+          "StoreCostMultiplier":"1.1",
+          "Image":"lemonade"
+       },
+       {
+          "Name":"Cafe",
+          "BaseStoreCost":"10",
+          "BaseStoreProfit":"1.5",
+          "StoreTimer":"5",
+          "StoreUnlocked":"False",
+          "StoreCostMultiplier":"1.08",
+          "Image":"coffee"
+       },
+       {
+          "Name":"Pet Shop",
+          "BaseStoreCost":"50",
+          "BaseStoreProfit":"7",
+          "StoreTimer":"10",
+          "StoreUnlocked":"False",
+          "StoreCostMultiplier":"1.06",
+          "Image":"dogcat"
+       }
+    ]
