@@ -8,7 +8,13 @@ public class GameManager : MonoBehaviour
     public delegate void UpdateBalance(float balance);
     public static event UpdateBalance OnUpdateBalance;
 
-
+    public enum State {
+        MainMenu,
+        Store,
+        Manager,
+        Settings
+    }
+    
     float CurrentBalance;
     UIManager uiManager;
 

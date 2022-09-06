@@ -52,6 +52,7 @@ public class UIStore : MonoBehaviour
     {
         UpdateBuyButtonText();
         UpdateStoreCountText();
+        UpdateProgressBar(Store.StoreProgress);
     }
 
     public void UpdateBuyButtonText()

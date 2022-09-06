@@ -33,6 +33,8 @@ public class store : MonoBehaviour
     [SerializeField]
     public bool ShowManagerPanel { get; set; }
 
+    public float StoreProgress => CurrentStoreTimer / StoreTimer;
+
     [SerializeField]
     public int StoreCount { get; private set; }
 
