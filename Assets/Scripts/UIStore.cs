@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIStore : MonoBehaviour
 {
-    private store Store;
+    public store Store { get; set; }
 
     public GameObject StoreCountText;
     public Slider StoreProgressSlider;
@@ -35,6 +35,12 @@ public class UIStore : MonoBehaviour
         StoreProgressSlider.GetComponent<Slider>().value = -1;
         UpdateBuyButtonText();
         UpdateStoreName();
+
+        if (!Store.StoreUnlocked)
+        {
+            HidePanel();
+        }
+
     }
 
     void UpdateStoreName() {
@@ -54,8 +60,30 @@ public class UIStore : MonoBehaviour
         BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy for $" + Store.NextStoreCost;
     }
 
+    public void CheckBuyStore() {
+        if (!Store.StoreUnlocked && (Store.gameManager.GetCurrentBalance() >= Store.NextStoreCost*0.8f))
+        {
+            Store.StoreUnlocked = true;
+            // make panel visible
+            ShowPanel();
+        }
+
+        if (Store.gameManager.GetCurrentBalance() >= Store.NextStoreCost)
+        {
+            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy Store";
+            UnlockBuyButtonText();
+            
+        }
+        else
+        {
+            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Not Enough Money";
+            LockBuyButtonText();
+        }
+    }
+
     public void UpdateProgressBar(float progress){
-        StoreProgressSlider.GetComponent<Slider>().value = progress;
+        if(StoreProgressSlider)
+            StoreProgressSlider.GetComponent<Slider>().value = progress;
     }
 
     public void ShowPanel() {

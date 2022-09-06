@@ -6,7 +6,9 @@
           "StoreTimer":"3",
           "StoreUnlocked":"True",
           "StoreCostMultiplier":"1.1",
-          "Image":"lemonade"
+          "Image":"lemonade",
+          "ManagerPrice":25,
+          "ManagerName": "Sid Russ"
        },
        {
           "Name":"Cafe",
@@ -15,7 +17,9 @@
           "StoreTimer":"5",
           "StoreUnlocked":"False",
           "StoreCostMultiplier":"1.08",
-          "Image":"coffee"
+          "Image":"coffee",
+          "ManagerPrice":75,
+          "ManagerName": "Tay Barras"
        },
        {
           "Name":"Pet Shop",
@@ -24,6 +28,8 @@
           "StoreTimer":"10",
           "StoreUnlocked":"False",
           "StoreCostMultiplier":"1.06",
-          "Image":"dogcat"
+          "Image":"dogcat",
+          "ManagerPrice":200,
+          "ManagerName": "Katherine Latey"
        }
     ]

@@ -26,12 +26,17 @@ public class store : MonoBehaviour
     public float CurrentStoreTimer = 0f;
     [SerializeField]
     public string StoreName { get; set; }
+    [SerializeField]
+    public float ManagerPrice { get; set; }
+    [SerializeField]
+    public string ManagerName { get; set; }
+    [SerializeField]
+    public bool ShowManagerPanel { get; set; }
 
     [SerializeField]
     public int StoreCount { get; private set; }
 
     public float NextStoreCost => Mathf.Round(BaseStoreCost * Mathf.Pow(StoreCostMultiplier, StoreCount) * 100)/100;
-    UIStore uiStore;
 
 
     // Start is called before the first frame update
@@ -39,13 +44,7 @@ public class store : MonoBehaviour
     {
         // get reference to game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // get reference to ui store
-        uiStore = transform.GetComponent<UIStore>();
-
-        if (!StoreUnlocked)
-        {
-            uiStore.HidePanel();
-        }
+        ShowManagerPanel = false;
     }
 
     // Update is called once per frame
@@ -68,29 +67,6 @@ public class store : MonoBehaviour
                 gameManager.AddBalance( incomePerStore * StoreCount );                
             }
         }
-        uiStore.UpdateProgressBar(CurrentStoreTimer / StoreTimer);
-        CheckBuyStore();
-    }
-
-    public void CheckBuyStore() {
-        if (!StoreUnlocked && (gameManager.GetCurrentBalance() >= NextStoreCost*0.8f))
-        {
-            StoreUnlocked = true;
-            // make panel visible
-            uiStore.ShowPanel();
-        }
-
-        if (gameManager.GetCurrentBalance() >= NextStoreCost)
-        {
-            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy Store";
-            uiStore.UnlockBuyButtonText();
-            
-        }
-        else
-        {
-            //BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Not Enough Money";
-            uiStore.LockBuyButtonText();
-        }
     }
     
     public void BuyStoreOnClick () {
@@ -100,8 +76,6 @@ public class store : MonoBehaviour
             // add 1 to StoreCount
             gameManager.AddBalance(-NextStoreCost);
             StoreCount++;
-            // set the text of StoreCountText to storeCount
-            //uiStore.UpdateStoreCountText();
 
             if (StoreCount % StoreStoreTimerUpgrade == 0) {
                 StoreTimer *= 0.9f;

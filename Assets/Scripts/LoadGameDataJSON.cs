@@ -17,11 +17,15 @@ public class LoadGameDataJSON : MonoBehaviour
         public bool StoreUnlocked { get; set; }
         public float StoreCostMultiplier { get; set; }
         public string Image { get; set; }
+        public float ManagerPrice { get; set; }
+        public string ManagerName { get; set; }
     }
 
     public TextAsset GameDataJSON;
     public GameObject StorePanel;
     public GameObject StorePrefab;
+    public GameObject ManagerPanel;
+    public GameObject ManagerPrefab;
 
     public void Start() {
         //Invoke("LoadData", 0.1f);
@@ -40,8 +44,11 @@ public class LoadGameDataJSON : MonoBehaviour
         {
             // create a new store object
             GameObject StoreObject = (GameObject)Instantiate(StorePrefab, StorePanel.transform);
+            GameObject ManagerObject = (GameObject)Instantiate(ManagerPrefab, ManagerPanel.transform);
             // get reference to store script
             store storeObj = StoreObject.GetComponent<store>();
+            store managerObj = ManagerObject.GetComponent<store>();
+            UIStoreManager managerUI = ManagerObject.GetComponent<UIStoreManager>();
             // set store properties
             storeObj.StoreName = store.Name;
             storeObj.BaseStoreCost = store.BaseStoreCost;
@@ -50,6 +57,13 @@ public class LoadGameDataJSON : MonoBehaviour
             storeObj.StoreUnlocked = store.StoreUnlocked;
             storeObj.StoreCostMultiplier = store.StoreCostMultiplier;
             storeObj.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>(store.Image);
+
+            storeObj.ManagerPrice = store.ManagerPrice;
+            storeObj.ManagerName = store.ManagerName;
+            
+            managerObj = storeObj;
+            managerUI.Store = storeObj;
+
         }
     }
 }
