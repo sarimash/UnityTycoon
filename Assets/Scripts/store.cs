@@ -12,7 +12,7 @@ public class store : MonoBehaviour
     [SerializeField]
     public float BaseStoreCost { get; set; }
     [SerializeField]
-    bool ManagerUnlocked;
+    public bool ManagerUnlocked {get; set; }
     [SerializeField]
     public float StoreCostMultiplier;
     [SerializeField]
@@ -96,7 +96,7 @@ public class store : MonoBehaviour
     }
 
     public void HireManager() {
-        if (ManagerPrice > gameManager.GetCurrentBalance()) {
+        if (ManagerUnlocked || (ManagerPrice > gameManager.GetCurrentBalance())) {
             // do nothing
         } else {
             Debug.Log(ManagerPrice);

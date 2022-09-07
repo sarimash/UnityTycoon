@@ -45,8 +45,12 @@ public class UIStoreManager : MonoBehaviour
 
     public void UpdateHireButtonText()
     {
+        if (Store.ManagerUnlocked) {
+            HireButtonText.GetComponent<TextMeshProUGUI>().text = "Hired!";
+        } else {
         // set the text of BuyButtonText to "Buy for $" + NextStoreCost
         HireButtonText.GetComponent<TextMeshProUGUI>().text = "Hire for $" + Store.ManagerPrice;
+        }
     }
 
     public void CheckShowManagerPanel() {
@@ -56,7 +60,7 @@ public class UIStoreManager : MonoBehaviour
             ShowPanel();
         }
 
-        if (Store.gameManager.GetCurrentBalance() >= Store.ManagerPrice)
+        if (!Store.ManagerUnlocked && Store.gameManager.GetCurrentBalance() >= Store.ManagerPrice)
         {
             UnlockHireButtonText();
             
