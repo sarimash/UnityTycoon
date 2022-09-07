@@ -63,6 +63,8 @@ public class LoadGameDataJSON : MonoBehaviour
             
             managerObj = storeObj;
             managerUI.Store = storeObj;
+            managerUI.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>(store.Image);
+
 
         }
     }
