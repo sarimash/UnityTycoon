@@ -59,6 +59,7 @@ public class UIStore : MonoBehaviour
     {
         // set the text of BuyButtonText to "Buy for $" + NextStoreCost
         BuyButtonText.GetComponent<TextMeshProUGUI>().text = "Buy for $" + Store.NextStoreCost;
+        CheckBuyStore();
     }
 
     public void CheckBuyStore() {

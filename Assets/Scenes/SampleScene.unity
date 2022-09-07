@@ -270,13 +270,14 @@ GameObject:
   - component: {fileID: 74588512}
   - component: {fileID: 74588511}
   - component: {fileID: 74588510}
+  - component: {fileID: 74588514}
   m_Layer: 5
   m_Name: ManagerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &74588510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +360,18 @@ RectTransform:
   m_AnchoredPosition: {x: 34.913, y: -8.426895}
   m_SizeDelta: {x: -301.22, y: -112.37}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &74588514
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74588509}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &93684510
 GameObject:
   m_ObjectHideFlags: 0

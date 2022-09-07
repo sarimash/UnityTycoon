@@ -47,15 +47,24 @@ public class UIManager : MonoBehaviour
             case GameManager.State.MainMenu:
                 break;
             case GameManager.State.Store:
-                managerPanel.SetActive(false);
+                //managerPanel.SetActive(false);
+                managerPanel.GetComponent<CanvasGroup>().alpha = 0;
+                managerPanel.GetComponent<CanvasGroup>().interactable = false;
+                managerPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 settingsPanel.SetActive(false);
                 break;
             case GameManager.State.Manager:
-                managerPanel.SetActive(true);
+                //managerPanel.SetActive(true);
+                managerPanel.GetComponent<CanvasGroup>().alpha =1f;
+                managerPanel.GetComponent<CanvasGroup>().interactable = true;
+                managerPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 settingsPanel.SetActive(false);
                 break;
             case GameManager.State.Settings:
-                managerPanel.SetActive(false);
+                //managerPanel.SetActive(false);
+                managerPanel.GetComponent<CanvasGroup>().alpha = 0;
+                managerPanel.GetComponent<CanvasGroup>().interactable = false;
+                managerPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 settingsPanel.SetActive(true);
                 break;
         }

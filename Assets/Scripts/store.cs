@@ -95,4 +95,14 @@ public class store : MonoBehaviour
         }
     }
 
+    public void HireManager() {
+        if (ManagerPrice > gameManager.GetCurrentBalance()) {
+            // do nothing
+        } else {
+            Debug.Log(ManagerPrice);
+            gameManager.AddBalance(-ManagerPrice);
+            ManagerUnlocked = true;
+        }
+    }
+
 }

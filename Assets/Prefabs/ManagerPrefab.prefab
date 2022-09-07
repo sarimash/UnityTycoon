@@ -392,9 +392,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8730803120704878211}
-        m_TargetAssemblyTypeName: store, Assembly-CSharp
-        m_MethodName: BuyStoreOnClick
+      - m_Target: {fileID: 1867635280}
+        m_TargetAssemblyTypeName: UIStoreManager, Assembly-CSharp
+        m_MethodName: onClickHireButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

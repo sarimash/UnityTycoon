@@ -38,8 +38,7 @@ public class UIStoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Store.ShowManagerPanel)
-            CheckShowManagerPanel();
+        CheckShowManagerPanel();
         UpdateHireButtonText();
 
     }
@@ -82,5 +81,9 @@ public class UIStoreManager : MonoBehaviour
 
     public void UnlockHireButtonText() {
         HireButtonText.transform.parent.gameObject.GetComponent<Button>().interactable = true;
+    }
+
+    public void onClickHireButton() {
+        Store.HireManager();
     }
 }
